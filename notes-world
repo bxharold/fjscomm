@@ -1,0 +1,138 @@
+https://plotly.com/python/map-configuration/
+plotly.express.scatter_geo() function in Python
+https://www.geeksforgeeks.org/plotly-express-scatter_geo-function-in-python/
+https://dash.gallery/dash-wind-streaming/
+
+nice, but not what I had in mind. Canvas can be animated, plotly, no.
+Maybe plotly javascript, but that is getting too far off base.
+
+I already multi-checked the interpolation.
+Mercator geometry isn't the route to take.
+The sec "fudge" factor didn't work as expected. (Double-check?)
+   but sec is correct.  Check/fix the image's bounds.
+Sec(lat) is correct.  Get the correct multiplier by looking at 0 and 15.
+I could settle for the solution that gets the longitude wrong;
+I could try another image.
+I could use trial and error to build a lookup table.
+To get screen coords -- use shift-command-4
+-----------
+OK.  I built a lookup table.  Used use shift-command-4  
+to get screen coords of the image displayed in browser.
+const lats = [-60,-45,-30,-15,  0, 15, 30, 45, 60, 75,90];
+const offs = [638,552,522,480,440,400,358,308,242.135, 0];
+
+function getoff(y) {
+    if (y>=89) return 0;  // north pole
+    // start loop with 1 to handle south pole 
+    for (let i=1; i<lats.length; i++) {
+        if (y<=lats[i]) { return offs[i] 
+            - (lats[i]-y)*(offs[i]-offs[i-1])/(lats[i]-lats[i-1])  
+        }
+    }
+    return -1;
+}
+
+ ____                               _               _
+|  _ \ ___ _ __ ___   ___ _ __ ___ | |__   ___ _ __| |
+| |_) / _ \ '_ ` _ \ / _ \ '_ ` _ \| '_ \ / _ \ '__| |
+|  _ <  __/ | | | | |  __/ | | | | | |_) |  __/ |  |_|
+|_| \_\___|_| |_| |_|\___|_| |_| |_|_.__/ \___|_|  (_)
+
+
+REMEMBER the point was to use the iss API in a Flask app.
+
+HiMac2:~/plotly pip3 install pyfiglet
+HiMac2:~/plotly python3
+>>> import pyfiglet
+>>> rv = pyfiglet.figlet_format("Remember!")
+>>> print(rv)
+ ____                               _               _
+|  _ \ ___ _ __ ___   ___ _ __ ___ | |__   ___ _ __| |
+| |_) / _ \ '_ ` _ \ / _ \ '_ ` _ \| '_ \ / _ \ '__| |
+|  _ <  __/ | | | | |  __/ | | | | | |_) |  __/ |  |_|
+|_| \_\___|_| |_| |_|\___|_| |_| |_|_.__/ \___|_|  (_)
+
+
+BUT this was kinda amusing... (I had forgotten the name "figlet")
+https://dev.to/theinsightfulcoder/5-python-projects-that-can-be-built-under-5-minutes-1cdf
+
+pip3 install pyttsx3
+   uh-oh, this may have been a good time to have created a venv...
+
+anyway...
+>>> import pyttsx3
+>>> engine = pyttsx3.init()
+>>> engine.say("Hello Everyone")
+>>> engine.runAndWait()
+and it worked.
+
+
+
+
+https://www.digitalocean.com/community/tutorials/how-to-push-an-existing-project-to-github
+In this tutorial, you will learn how to take an existing project you are working on and push it, so it also exists on GitHub.
+
+Step 1 — Create a new GitHub Repo
+Sign in to GitHub and create a new empty repo. You can choose to either initialize a README or not. It doesn’t really matter because we’re just going to override everything in this remote repository anyways.
+
+Warning: Through the rest of this tutorial, we’ll assume your GitHub username is sammy and the repo you created is named my-new-project. It is important that you replace these placeholders with your actual username and repo name.
+
+
+Step 2 — Initialize Git in the project folder
+From your terminal, run the following commands after navigating to the folder you would like to add.
+
+Initialize the Git Repo
+Make sure you are in the root directory of the project you want to push to GitHub and run:
+
+Note: If you already have an initialized Git repository, you can skip this command.
+
+git init
+This step creates a hidden .git directory in your project folder, which the git software recognizes and uses to store all the metadata and version history for the project.
+
+Add the files to Git index
+git add -A
+The git add command is used to tell git which files to include in a commit, and the -A (or --all) argument means “include all”.
+
+Commit Added Files
+git commit -m 'Added my project'
+
+Add a new remote origin
+git remote add origin git@github.com:sammy/my-new-project.git
+git remote add origin git@github.com:bxharold/fjscomm.git
+Note: Remember, you will need to replace the highlighted parts of the username and repo name with your own username and repo name.
+
+In git, a “remote” refers to a remote version of the same repository, which is typically on a server somewhere (in this case, GitHub). “origin” is the default name git gives to a remote server (you can have multiple remotes) so git remote add origin is instructing git to add the URL of the default remote server for this repo.
+
+Push to GitHub
+git push -u -f origin main
+The -u (or --set-upstream) flag sets the remote origin as the upstream reference. This allows you to later perform git push and git pull commands without having to specify an origin since we always want GitHub in this case.
+
+The -f (or --force) flag stands for force. This will automatically overwrite everything in the remote directory. We’re using it here to overwrite the default README that GitHub automatically initialized.
+
+Note: If you did not include the default README when creating the project on GitHub, the -f flag isn’t really necessary.
+
+All together
+git init
+git add -A
+git commit -m 'Added my project'
+git remote add origin git@github.com:sammy/my-new-project.git
+git remote add origin git@github.com:bxharold/fjscomm.git
+git push -u -f origin main
+
+
+HiMac2:~/git/fjscomm git commit -m "copied digitalocean text to notes-world"
+[master 8877340] copied digitalocean text to notes-world
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+HiMac2:~/git/fjscomm git remote add origin git@github.com:bxharold/fjscomm.git
+fatal: remote origin already exists.
+????
+
+HiMac2:~/git/fjscomm git push -u -f origin main
+error: src refspec main does not match any.
+error: failed to push some refs to 'git@github.com:bxharold/fjscomm.git'
+????  well that didn't go well.
+
+
+
+
+
