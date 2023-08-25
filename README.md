@@ -1,4 +1,8 @@
 ## Project: fjscomm	
+
+8-25-2023:  trying this again.  created hub repo, pasted the 3 lines.
+now editing the readme on github, and committing changes.
+
 Flask-Javascript communication.  (My terminology.)
 
 I'm starting to learn "Python-API-endpoint" terminology.
@@ -15,5 +19,4 @@ https://www.markdownguide.org/cheat-sheet
 in vscode, if you do a split view, you get preview.
     View/editor layout/single to undo split view, or just close the preview tab.
 ```
-
 
