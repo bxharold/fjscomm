@@ -2,6 +2,7 @@
 
 8-25-2023:  trying this again.  created hub repo, pasted the 3 lines.
 now editing the readme on github, and committing changes.
+local git pull makes the changes to the local file. OK. Another change.
 
 Flask-Javascript communication.  (My terminology.)
 
